@@ -4,7 +4,7 @@ function MyTable() {
   return (
     <Table striped bordered hover>
       <thead>
-        <tr>
+        <tr class="table-primary">
           <th>#</th>
           <th>First Name</th>
           <th>Last Name</th>
