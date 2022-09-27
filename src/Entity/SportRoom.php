@@ -3,15 +3,14 @@
 namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
-use App\Repository\PartnerRepository;
+use App\Repository\SportRoomRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
-use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: PartnerRepository::class)]
+#[ORM\Entity(repositoryClass: SportRoomRepository::class)]
 #[ApiResource]
-class Partner
+class SportRoom
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -24,42 +23,33 @@ class Partner
     #[ORM\Column(length: 255)]
     private ?string $address = null;
 
-    #[ORM\Column(length: 10)]
+    #[ORM\Column(length: 20)]
     private ?string $postalCode = null;
 
-    #[ORM\Column(length: 90)]
+    #[ORM\Column(length: 255)]
     private ?string $city = null;
 
-    #[ORM\Column(length: 90)]
+    #[ORM\Column(length: 255)]
     private ?string $country = null;
 
-    #[ORM\Column(length: 20)]
+    #[ORM\Column(length: 30)]
     private ?string $phone = null;
-
-    #[ORM\Column(type: Types::TEXT, nullable: true)]
-    private ?string $description = null;
-
-    #[ORM\Column(length: 255, nullable: true)]
-    private ?string $logo_url = null;
-
-    #[ORM\Column(length: 255, nullable: true)]
-    private ?string $website_url = null;
 
     #[ORM\Column]
     private ?bool $active = null;
 
     #[ORM\Column]
-    private array $defaultPerms = [];
+    private array $permissions = [];
 
-    #[ORM\OneToMany(mappedBy: 'partner', targetEntity: SportRoom::class)]
-    private Collection $sportRooms;
+    #[ORM\ManyToOne(inversedBy: 'sportRooms')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?partner $partner = null;
 
-    #[ORM\OneToMany(mappedBy: 'partner', targetEntity: Contact::class)]
+    #[ORM\OneToMany(mappedBy: 'sportRoom', targetEntity: Contact::class)]
     private Collection $contacts;
 
     public function __construct()
     {
-        $this->sportRooms = new ArrayCollection();
         $this->contacts = new ArrayCollection();
     }
 
@@ -140,42 +130,6 @@ class Partner
         return $this;
     }
 
-    public function getDescription(): ?string
-    {
-        return $this->description;
-    }
-
-    public function setDescription(?string $description): self
-    {
-        $this->description = $description;
-
-        return $this;
-    }
-
-    public function getLogoUrl(): ?string
-    {
-        return $this->logo_url;
-    }
-
-    public function setLogoUrl(?string $logo_url): self
-    {
-        $this->logo_url = $logo_url;
-
-        return $this;
-    }
-
-    public function getWebsiteUrl(): ?string
-    {
-        return $this->website_url;
-    }
-
-    public function setWebsiteUrl(?string $website_url): self
-    {
-        $this->website_url = $website_url;
-
-        return $this;
-    }
-
     public function isActive(): ?bool
     {
         return $this->active;
@@ -188,44 +142,26 @@ class Partner
         return $this;
     }
 
-    public function getDefaultPerms(): array
+    public function getPermissions(): array
     {
-        return $this->defaultPerms;
+        return $this->permissions;
     }
 
-    public function setDefaultPerms(array $defaultPerms): self
+    public function setPermissions(array $permissions): self
     {
-        $this->defaultPerms = $defaultPerms;
+        $this->permissions = $permissions;
 
         return $this;
     }
 
-    /**
-     * @return Collection<int, SportRoom>
-     */
-    public function getSportRooms(): Collection
+    public function getPartner(): ?partner
     {
-        return $this->sportRooms;
+        return $this->partner;
     }
 
-    public function addSportRoom(SportRoom $sportRoom): self
+    public function setPartner(?partner $partner): self
     {
-        if (!$this->sportRooms->contains($sportRoom)) {
-            $this->sportRooms->add($sportRoom);
-            $sportRoom->setPartner($this);
-        }
-
-        return $this;
-    }
-
-    public function removeSportRoom(SportRoom $sportRoom): self
-    {
-        if ($this->sportRooms->removeElement($sportRoom)) {
-            // set the owning side to null (unless already changed)
-            if ($sportRoom->getPartner() === $this) {
-                $sportRoom->setPartner(null);
-            }
-        }
+        $this->partner = $partner;
 
         return $this;
     }
@@ -242,7 +178,7 @@ class Partner
     {
         if (!$this->contacts->contains($contact)) {
             $this->contacts->add($contact);
-            $contact->setPartner($this);
+            $contact->setSportRoom($this);
         }
 
         return $this;
@@ -252,8 +188,8 @@ class Partner
     {
         if ($this->contacts->removeElement($contact)) {
             // set the owning side to null (unless already changed)
-            if ($contact->getPartner() === $this) {
-                $contact->setPartner(null);
+            if ($contact->getSportRoom() === $this) {
+                $contact->setSportRoom(null);
             }
         }
 

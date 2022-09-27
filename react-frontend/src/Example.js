@@ -24,7 +24,7 @@ const ExampleToast = ({ children }) => {
 const Example = () => (
   <Container className="p-3">
     <Container className="p-5 mb-4 bg-light rounded-3">
-      <h1 className="header">Welcome To React-Bootstrap</h1>
+      <h1 className="header text-primary">Welcome To React-Bootstrap</h1>
       <ExampleToast>
         We now have Toasts
         <span role="img" aria-label="tada">

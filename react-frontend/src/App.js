@@ -1,5 +1,4 @@
 import logo from './logo.svg';
-import './App.scss';
 import MyTable from './MyTable';
 import Example from './Example';
 
