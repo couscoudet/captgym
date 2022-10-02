@@ -1,6 +1,6 @@
 import logo from './logo.svg';
 import MyTable from './MyTable';
-import Example from './Example';
+import LoginPage from './Components/LoginPage.js';
 
 function App() {
   return (
@@ -20,7 +20,7 @@ function App() {
         </a>
       </header>
       <MyTable />
-      <Example />
+      <LoginPage />
     </div>
   );
 }
