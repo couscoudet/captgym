@@ -1,10 +1,27 @@
 
+/*Google Fonts*/
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Play:wght@400;700&display=swap');
+
 $theme-colors: (
     "info": tomato,
     "danger": teal,
-    "primary": #1D4EFF
+    "primary": #1D4EFF,
+    "navbar-dark-toggler-icon-bg": white
 );
 
+* {
+    font-family: 'Play', sans-serif;
+}
+
+th{
+    font-weight: normal;
+}
+
+h5{
+    text-align: center;
+}
 
 /* import bootstrap to set changes */
 @import "~bootstrap/scss/bootstrap";
+

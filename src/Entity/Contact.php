@@ -38,11 +38,11 @@ class Contact
 
     #[ORM\ManyToOne(inversedBy: 'contacts')]
     #[ORM\JoinColumn(nullable: false)]
-    private ?partner $partner = null;
+    private ?Partner $partner = null;
 
     #[ORM\ManyToOne(inversedBy: 'contacts')]
     #[ORM\JoinColumn(nullable: false)]
-    private ?sportroom $sportRoom = null;
+    private ?SportRoom $sportRoom = null;
 
     public function getId(): ?int
     {
@@ -133,24 +133,24 @@ class Contact
         return $this;
     }
 
-    public function getPartner(): ?partner
+    public function getPartner(): ?Partner
     {
         return $this->partner;
     }
 
-    public function setPartner(?partner $partner): self
+    public function setPartner(?Partner $partner): self
     {
         $this->partner = $partner;
 
         return $this;
     }
 
-    public function getSportRoom(): ?sportroom
+    public function getSportRoom(): ?SportRoom
     {
         return $this->sportRoom;
     }
 
-    public function setSportRoom(?sportroom $sportRoom): self
+    public function setSportRoom(?SportRoom $sportRoom): self
     {
         $this->sportRoom = $sportRoom;
 

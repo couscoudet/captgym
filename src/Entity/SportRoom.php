@@ -43,7 +43,7 @@ class SportRoom
 
     #[ORM\ManyToOne(inversedBy: 'sportRooms')]
     #[ORM\JoinColumn(nullable: false)]
-    private ?partner $partner = null;
+    private ?Partner $partner = null;
 
     #[ORM\OneToMany(mappedBy: 'sportRoom', targetEntity: Contact::class)]
     private Collection $contacts;
@@ -154,12 +154,12 @@ class SportRoom
         return $this;
     }
 
-    public function getPartner(): ?partner
+    public function getPartner(): ?Partner
     {
         return $this->partner;
     }
 
-    public function setPartner(?partner $partner): self
+    public function setPartner(?Partner $partner): self
     {
         $this->partner = $partner;
 
