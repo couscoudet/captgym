@@ -2,19 +2,25 @@ import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
+import MyButton from './MyButton';
 import { CLIENT_MODULES } from '../helpers/CLIENT_MODULES';
 
 export default function AddPartnerModal() {
   const [show, setShow] = useState(false);
+  // const [message, setMessage] = useState('');
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
+  // const handleChange = (event) => {
+  //   setMessage(event.target.value);
+  //   console.log(event.target.value);
+    
+  // }
+
   return (
     <>
-      <Button variant="primary" onClick={handleShow}>
-        Launch demo modal
-      </Button>
+      <MyButton onClick={handleShow}>Ajouter un partenaire</MyButton>
 
       <Modal show={show} onHide={handleClose}>
       <Modal.Header closeButton>
@@ -42,7 +48,7 @@ export default function AddPartnerModal() {
             <Form.Group className="mb-3" controlId="partner.postalCode">
               <Form.Label>Code Postal</Form.Label>
               <Form.Control
-                type="number"
+                type="text"
                 placeholder="00000"
                 required
               />
@@ -96,6 +102,7 @@ export default function AddPartnerModal() {
             type="switch"
             id="partner.active"
             label="Partenaire actif"
+            defaultChecked={true}
             />
             <h5 className='m-3 text-primary'>Modules activés par défaut pour les salles de ce partenaire</h5>
             {

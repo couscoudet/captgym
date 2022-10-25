@@ -14,7 +14,6 @@ export default function PartnersPage() {
   return (
     <div>
         <Header />
-        <MyButton>Ajouter un partenaire</MyButton>
         <AddPartnerModal />
         <MyTable />
     </div>
