@@ -10,12 +10,7 @@ use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: PartnerRepository::class)]
-#[ApiResource(operations:[
-    new Post(
-        uriTemplate: '/partners',
-        status: 301
-    )
-])]
+#[ApiResource()]
 class Partner
 {
     #[ORM\Id]
