@@ -1,1 +1,1 @@
-web: heroku-php-apache2 react-frontend/public/
+web: heroku-php-apache2 /public/
