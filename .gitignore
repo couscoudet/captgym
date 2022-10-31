@@ -22,7 +22,8 @@
 ###< symfony/phpunit-bridge ###
 
 ###> lexik/jwt-authentication-bundle ###
-/config/jwt/*.pem
+##/config/jwt/*.pem
 ###< lexik/jwt-authentication-bundle ###
+/node_modules
 
 /backup.sql
