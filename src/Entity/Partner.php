@@ -3,6 +3,10 @@
 namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
+use ApiPlatform\Core\Annotation\ApiFilter;
+use ApiPlatform\Doctrine\Orm\Filter\DateFilter;
+use ApiPlatform\Doctrine\Orm\Filter\SearchFilter;
+use ApiPlatform\Doctrine\Orm\Filter\BooleanFilter;
 use App\Repository\PartnerRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -10,7 +14,12 @@ use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: PartnerRepository::class)]
-#[ApiResource()]
+#[ApiResource(
+    paginationItemsPerPage: 10
+)]
+#[ApiFilter(BooleanFilter::class, properties:['active'])]
+#[ApiFilter(SearchFilter::class, properties:['name' => 'exact'])]
+
 class Partner
 {
     #[ORM\Id]
