@@ -2,9 +2,8 @@
 
 namespace App\Entity;
 
-use ApiPlatform\Core\Annotation\ApiResource;
-use ApiPlatform\Core\Annotation\ApiFilter;
-use ApiPlatform\Doctrine\Orm\Filter\DateFilter;
+use ApiPlatform\Metadata\ApiResource;
+use ApiPlatform\Metadata\ApiFilter;
 use ApiPlatform\Doctrine\Orm\Filter\SearchFilter;
 use ApiPlatform\Doctrine\Orm\Filter\BooleanFilter;
 use App\Repository\PartnerRepository;
@@ -18,7 +17,7 @@ use Doctrine\ORM\Mapping as ORM;
     paginationItemsPerPage: 10
 )]
 #[ApiFilter(BooleanFilter::class, properties:['active'])]
-#[ApiFilter(SearchFilter::class, properties:['name' => 'exact'])]
+// #[ApiFilter(SearchFilter::class, properties:['name' => 'exact'])]
 
 class Partner
 {
