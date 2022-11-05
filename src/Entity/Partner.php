@@ -17,7 +17,7 @@ use Doctrine\ORM\Mapping as ORM;
     paginationItemsPerPage: 10
 )]
 #[ApiFilter(BooleanFilter::class, properties:['active'])]
-// #[ApiFilter(SearchFilter::class, properties:['name' => 'exact'])]
+#[ApiFilter(SearchFilter::class, properties:['name' => 'partial', 'city' => 'partial'])]
 
 class Partner
 {

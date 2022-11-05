@@ -5,7 +5,7 @@ lexik_jwt_authentication:
     
     # config/packages/lexik_jwt_authentication.yaml
 
-    token_ttl: 3600 # token TTL in seconds, defaults to 1 hour
+    token_ttl: 72000 # token TTL in seconds, defaults to 1 hour
     user_identity_field: email # key under which the user identity will be stored in the token payload
     clock_skew: 0
     allow_no_expiration: false # set to true to allow tokens without exp claim
